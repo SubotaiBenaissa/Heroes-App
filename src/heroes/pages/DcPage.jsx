@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeroesComponent } from '../components/HeroesComponent'
+import { HeroesComponent } from '../components/'
 
 export const DcPage = () => {
 
