@@ -1,7 +1,17 @@
-import { Link, NavLink } from 'react-router-dom';
-
+import { Link, NavLink, useNavigate } from 'react-router-dom';   // useNavigate es un custom hook de react router
 
 export const NavbarComponent = () => {
+
+    const navigate = useNavigate();        // Recibe 3 params, el 'to' que es la ruta a la que irá, el replace y el state
+
+    const onLogOut = () => {
+
+        navigate('/login', {
+            replace: true
+        });
+
+    }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-3">
             
@@ -43,7 +53,7 @@ export const NavbarComponent = () => {
                     <span className="nav-item nav-link text-primary">
                         Alexis
                     </span>
-                    <button className="nav-item nav-link btn">
+                    <button className="nav-item nav-link btn" onClick={ onLogOut }>
                         Log Out
                     </button>
                 </ul>
