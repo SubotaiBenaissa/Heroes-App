@@ -1,5 +1,6 @@
 import React from 'react'
 import { getHeroesByPublisher } from '../helpers'
+import { HeroCard } from './HeroCard';
 
 export const HeroesComponent = ({ publisher }) => {
 
@@ -8,15 +9,13 @@ export const HeroesComponent = ({ publisher }) => {
     return (
         
         <>
-            <ul>
+            <div className="row rows-cols-1 row-cols-md-3 g-3">
                 { 
                     heroes.map( (hero) => (
-                        <li key={ hero.id }>
-                            { hero.superhero }
-                        </li>
-                    ) )
-                }
-            </ul>
+                        <HeroCard key={ hero.id } { ...hero } />         
+                    ) )      
+                }             {/* Se usa es operador spread para mandar todos los datos de hero a las props de HeroCard */}
+            </div>
         </>
 
     )
