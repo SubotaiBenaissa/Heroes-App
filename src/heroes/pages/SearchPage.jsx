@@ -1,22 +1,27 @@
 import React from 'react'
+import queryString from 'query-string'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { HeroCard } from '../components'
+import { getHeroByLink } from '../helpers'
 
 export const SearchPage = () => {
 
     const navigate = useNavigate();
-    const location = useLocation();        // Otro hook de react router dom 
+    const location = useLocation();        // Otro hook de react router dom que permite saber la ubicación de la url en que se está
+    const { q = '' } = queryString.parse( location.search ); 
+    const heroes = getHeroByLink( q );
+
+    const showSearch = ( q.length === 0 );
+    const showError = ( q.length > 0 ) && ( heroes.length === 0 );
 
     const { searchText, onInputChange } = useForm({
-        searchText: ''
+        searchText: q
     });
 
     const onSearchHero = (event) => {
         event.preventDefault();
-        if (searchText.trim().length <= 1) return;
-        console.log({ searchText });
-        navigate(`?q=${ searchText.toLowerCase().trim() }`)
+        navigate(`?q=${ searchText }`)
     }
 
     return (
@@ -24,7 +29,7 @@ export const SearchPage = () => {
         <>
             <h1>Search</h1>
             <hr />
-            <div className="row">
+            <div className="row animate__animated animate__fadeIn">
                 <div className="col-5">
                     <h4>Searching</h4>
                     <hr />
@@ -46,13 +51,19 @@ export const SearchPage = () => {
                 <div className="col-7">
                     <h4>Results</h4>
                     <hr />
-                    <div className="alert alert-primary">
+
+                    <div className="alert alert-primary" style={{ display: showSearch ? '' : 'none' }}>
                         Search a hero
                     </div>
-                    <div className="alert alert-danger">
-                        No results with <b>ASD</b>
+                    <div className="alert alert-danger" style={{ display: showError ? '' : 'none' }}>
+                        No results with <b>{ q }</b>
                     </div>
-                    <HeroCard />
+
+                    {
+                        heroes.map( (hero) => (
+                            <HeroCard key={ hero.id } {...hero}/>
+                        ))
+                    }
                 </div>
             </div>
         </>
