@@ -8,7 +8,7 @@ export const HeroPage = () => {
     const { heroId } = useParams();              // Hook de react router dom para extraer el parámetro por url que se manda
     const navigate = useNavigate();
     
-    const hero = useMemo( () => getHeroById( heroId ), [ heroId ] );
+    const hero = useMemo( () => getHeroById( heroId ), [ heroId ] );  // Se memoriza la función getHeroById según el heroId
 
     const onNavigateBack = () => {
 
