@@ -27,9 +27,9 @@ export const SearchPage = () => {
     return (
         
         <>
-            <h1>Search</h1>
+            <h1 className="mt-4">Search</h1>
             <hr />
-            <div className="row animate__animated animate__fadeIn">
+            <div className="row mt-4 animate__animated animate__fadeIn">
                 <div className="col-5">
                     <h4>Searching</h4>
                     <hr />

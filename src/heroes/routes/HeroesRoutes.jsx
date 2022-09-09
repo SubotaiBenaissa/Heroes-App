@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { NavbarComponent } from '../../ui'
+import { FooterComponent, NavbarComponent } from '../../ui'
 import { DcPage, HeroPage, MarvelPage, SearchPage } from '../pages'
 
 export const HeroesRoutes = () => {
@@ -18,6 +18,7 @@ export const HeroesRoutes = () => {
                     <Route path='/' element={ <Navigate to='/marvel'/> } />
                 </Routes>
             </div>
+            <FooterComponent />
         </>
 
     )
