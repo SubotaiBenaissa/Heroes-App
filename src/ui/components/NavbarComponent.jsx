@@ -4,13 +4,15 @@ import { AuthContext } from '../../auth';
 
 export const NavbarComponent = () => {
 
-    const { user } = useContext( AuthContext );
+    const { user, logout } = useContext( AuthContext );
     
     console.log( user );
 
     const navigate = useNavigate();        // Recibe 3 params, el 'to' que es la ruta a la que irá, el replace y el state
 
     const onLogOut = () => {
+
+        logout();
 
         navigate('/login', {
             replace: true
