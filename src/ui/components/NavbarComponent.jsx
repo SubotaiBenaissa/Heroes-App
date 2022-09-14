@@ -1,6 +1,12 @@
+import { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';   // useNavigate es un custom hook de react router
+import { AuthContext } from '../../auth';
 
 export const NavbarComponent = () => {
+
+    const { user } = useContext( AuthContext );
+    
+    console.log( user );
 
     const navigate = useNavigate();        // Recibe 3 params, el 'to' que es la ruta a la que irá, el replace y el state
 
@@ -51,7 +57,7 @@ export const NavbarComponent = () => {
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
                     <span className="nav-item nav-link text-primary">
-                        Alexis
+                        {user?.name}
                     </span>
                     <button className="nav-item nav-link btn" onClick={ onLogOut }>
                         Log Out
