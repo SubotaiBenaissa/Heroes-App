@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  heroesapp:
+    image: alangobe/heroes-app
+    container_name: heroesapp
+    ports: 
+      - "5050:80"
+    restart: always
